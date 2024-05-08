@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "password": "alandinh0203",
+    "database": "mimistakedb",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port": 33061
+  },
+  "test": {
+    "username": "root",
+    "password": "alandinh0203",
+    "database": "mimistakedb",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port": 33061
+  },
+  "production": {
+    "username": "root",
+    "password": "alandinh0203",
+    "database": "mimistakedb",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port": 33061
+  }
+}
