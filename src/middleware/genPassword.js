@@ -29,3 +29,5 @@ function generatePassword(length) {
 
     return password;
 }
+
+module.exports = generatePassword

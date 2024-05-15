@@ -3,9 +3,9 @@
     "username": "root",
     "password": "alandinh0203",
     "database": "mimistakedb",
-    "host": "nosh",
+    "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": 3306
+    "port": 33061
   },
   "test": {
     "username": "root",

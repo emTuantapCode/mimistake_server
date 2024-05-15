@@ -233,7 +233,7 @@ const changePassword = async(req, res) => {
         if(formData.name){
             response.name = formData.name
         }
-        if(formData.newPassword){
+        if(formData?.newPassword){
             const isCorrectPassword = bcrypt.compareSync(formData.currentPassword, response?.password)
             if(!isCorrectPassword){
                 return res.status(400).json({
@@ -241,7 +241,7 @@ const changePassword = async(req, res) => {
                     message: ENLNG?"Wrong password":"Sai mật khẩu"
                 })
             }
-            response.password = hashPassword(newPassword)
+            response.password = hashPassword(formData?.newPassword)
         }
         await response.save()
 
