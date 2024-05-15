@@ -3,24 +3,23 @@
     "username": "root",
     "password": "alandinh0203",
     "database": "mimistakedb",
-    "host": "127.0.0.1",
+    "host": "nosh",
     "dialect": "mysql",
-    "port": 33061
+    "port": 3306
   },
   "test": {
     "username": "root",
     "password": "alandinh0203",
     "database": "mimistakedb",
-    "host": "127.0.0.1",
+    "host": "nosh",
     "dialect": "mysql",
-    "port": 33061
+    "port": 3306
   },
   "production": {
     "username": "root",
-    "password": "alandinh0203",
-    "database": "mimistakedb",
+    "password": null,
+    "database": "database_production",
     "host": "127.0.0.1",
-    "dialect": "mysql",
-    "port": 33061
+    "dialect": "mysql"
   }
 }

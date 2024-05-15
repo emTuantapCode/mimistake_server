@@ -4,20 +4,10 @@ const bcrypt = require('bcryptjs')
 const genToken = require('../middleware/genToken')
 const sendEmailHandler = require('./mail')
 const jwt = require('jsonwebtoken')
+const generatePassword = require('../middleware/genPassword')
 
 
 const hashPassword = password => bcrypt.hashSync(password, bcrypt.genSaltSync(10))
-function generateRandomNumber(length) {
-    let result = '';
-    const characters = '0123456789';
-    const charactersLength = characters.length;
-  
-    for (let i = 0; i < length; i++) {
-      result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-  
-    return result;
-  }
 
 const login = async(req, res) => {
     try {
@@ -179,7 +169,7 @@ const emailForget = async(req, res) => {
                         message: ENLNG?"Account is not found":"Không tìm thấy tài khoản"
                     })
                 }else{
-                    let newPassword = generateRandomNumber(8)
+                    let newPassword = generatePassword(8)
                     response.password = hashPassword(newPassword)
                     const emailMessage = {
                         from: 'ICN lab/AlanDinh',

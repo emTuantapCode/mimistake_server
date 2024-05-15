@@ -1,0 +1,53 @@
+version: '3.8'
+
+networks:
+  mimistake:
+    driver: bridge
+
+services:
+
+  nosh:
+    image: mysql:latest
+    container_name: nosh
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=alandinh0203
+      - MYSQL_DATABASE=mimistakedb
+    volumes:
+      - ./mysql-data:/var/lib/mysql
+    networks:
+      - mimistake
+
+  server:
+    platform: linux/amd64
+    image: alandinh/mimistake:v2.0
+    container_name: server
+    restart: always
+    environment:
+      -  NODE_ENV=development
+      -  DB=mimistakedb
+      -  DB_USERNAME=root
+      -  DB_PASSWORD=alandinh0203
+      -  DB_HOST=nosh
+      -  DB_DIALECT=mysql
+      -  DB_PORT=3306
+    ports:
+      - "127.0.0.1:5568:5568"
+    networks:
+      - mimistake
+    depends_on:
+      - nosh
+
+  nginx:
+    image: nginx:latest
+    container_name: your-nginx-server
+    restart: always
+    ports:
+      - "443:443"
+    networks:
+      - mimistake
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d
+      - ./certificate:/etc/nginx/certs
+    depends_on:
+      - server

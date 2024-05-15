@@ -39,6 +39,11 @@ const connection = new Sequelize(process.env.DB, process.env.DB_USERNAME, db_pas
     port: process.env.DB_PORT,
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
+    ssl: {
+        key: `${CERTIFICATE_DIR}/${KEY_FILE}`,
+        cert: `${CERTIFICATE_DIR}/${CERT_FILE}`,
+        ca: `${CERTIFICATE_DIR}/${CERT_FILE}`
+    },
     logging: false,
     timezone: '+07:00',
 })

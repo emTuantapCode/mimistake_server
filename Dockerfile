@@ -1,10 +1,21 @@
-FROM node:lts-alpine
-ENV NODE_ENV=production
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
+FROM --platform=amd64 node:alpine
+
+ENV NODE_ENV=development
+ENV DB=mimistakedb
+ENV DB_USERNAME=root
+ENV DB_PASSWORD=alandinh0203
+ENV DB_HOST=nosh
+ENV DB_DIALECT=mysql
+ENV DB_PORT=3306
+
+WORKDIR /project
+
+COPY package.json .
+
+RUN npm install --development --silent
+
 COPY . .
+
 EXPOSE 5568
-RUN chown -R node /usr/src/app
-USER node
-CMD ["npm", "start"]
+
+CMD ["sh", "-c", "cd src npx sequelize-cli db:migrate && cd /project && npm start"]
